@@ -1,0 +1,123 @@
+/* Page styling */
+body {
+    margin: 0;
+    padding: 0;
+
+    /* Flexbox for centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Full page height */
+    height: 100vh;
+
+    /* Background color using RGB */
+    background: rgb(240, 244, 248);
+
+    /* Font styling */
+    font-family: Arial, sans-serif;
+}
+
+/* Calculator box */
+.calculator-container {
+    background: rgb(255, 255, 255);
+
+    padding: 35px;
+
+    width: 350px;
+
+    border-radius: 12px;
+
+    /* Shadow effect */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+
+    text-align: center;
+}
+
+/* Main heading */
+h1 {
+    margin-bottom: 25px;
+    color: rgb(30, 30, 30);
+}
+
+/* Label styling */
+label {
+    display: block;
+    text-align: left;
+
+    margin-top: 15px;
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: rgb(60, 60, 60);
+}
+
+/* Input field styling */
+input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 2px solid rgb(200, 200, 200);
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+
+/* Input focus effect */
+input:focus {
+    border-color: rgb(52, 152, 219);
+
+    outline: none;
+
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+}
+
+/* Button styling */
+button {
+    margin-top: 25px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: rgb(52, 152, 219);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: rgb(41, 128, 185);
+
+    transform: scale(1.02);
+}
+
+/* Result paragraph */
+#result {
+    margin-top: 20px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: rgb(34, 34, 34);
+}
