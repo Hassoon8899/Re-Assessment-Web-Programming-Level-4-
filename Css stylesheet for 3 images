@@ -1,0 +1,40 @@
+/* Style for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Main heading */
+h1 {
+    color: darkgreen;
+}
+
+/* Gallery item styling */
+.gallery-item {
+    margin-bottom: 40px;
+}
+
+/* Image styling with CSS filters */
+img {
+    border-radius: 10px;
+
+    /* CSS filter effects */
+    filter: grayscale(20%) brightness(110%) contrast(105%);
+
+    transition: 0.3s;
+}
+
+/* Hover effect */
+img:hover {
+    filter: grayscale(0%) brightness(120%);
+    transform: scale(1.03);
+}
+
+/* License text styling */
+.license {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+}
