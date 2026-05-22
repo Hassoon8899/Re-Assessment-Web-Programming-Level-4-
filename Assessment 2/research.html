@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus University — Research</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- Research areas ---- */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .research-cell {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .research-cell::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease-smooth);
+    }
+    .research-cell:hover::before { transform: scaleX(1); }
+    .research-cell:hover { background: var(--off-white); }
+    .research-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      transition: color var(--transition);
+    }
+    .research-cell:hover .research-num { color: var(--accent); }
+    .research-cell h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .research-cell p { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* ---- Centres of excellence ---- */
+    .centre-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .centre-row {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.8rem 2rem;
+      transition: var(--transition);
+    }
+    .centre-row:hover { background: var(--off-white); }
+    .centre-year {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .centre-row h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+    .centre-row p { font-size: 0.82rem; color: var(--text-muted); }
+    .centre-funding {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    /* ---- Impact stats ---- */
+    .impact-band {
+      background: var(--black);
+      padding: 5rem 0;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .impact-item { text-align: center; }
+    .impact-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+    }
+    .impact-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.5);
+      margin-top: 0.5rem;
+    }
+    .impact-item:nth-child(2) .impact-num,
+    .impact-item:nth-child(4) .impact-num {
+      color: var(--accent);
+    }
+
+    /* ---- Latest publications ---- */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .pub-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-item:first-child { border-top: 1px solid var(--border); }
+    .pub-year {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      padding-top: 0.2rem;
+    }
+    .pub-body h4 { font-size: 0.95rem; margin-bottom: 0.4rem; font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; }
+    .pub-body .pub-journal {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+    .pub-body .pub-authors {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ---- Partnerships ---- */
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 2.5rem;
+    }
+    .partner-tile {
+      background: var(--white);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .partner-tile:hover { background: var(--off-white); }
+    .partner-tile span {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .research-grid { grid-template-columns: 1fr; gap: 1px; }
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .centre-row { grid-template-columns: 1fr; gap: 0.5rem; }
+      .partner-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .impact-grid { grid-template-columns: 1fr 1fr; }
+      .partner-grid { grid-template-columns: repeat(2, 1fr); }
+      .pub-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <div class="page-hero" style="padding-top: calc(var(--nav-h) + 4rem);">
+    <div class="container">
+      <span class="overline">Advancing Knowledge</span>
+      <div class="rule"></div>
+      <h1 class="anim-fade-up">Research &amp;<br><em>Innovation</em></h1>
+      <p class="anim-fade-up delay-1" style="max-width:540px; color:var(--text-muted); font-size:1.1rem; margin-top:1rem;">
+        Nexus is ranked in the top 10 globally for research impact. Our 1,400 researchers work across disciplines to address the most pressing challenges of our time.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== IMPACT STATS ===== -->
+  <div class="impact-band">
+    <div class="container">
+      <div class="impact-grid">
+        <div class="impact-item">
+          <div class="impact-num" data-count="1400" data-suffix="+">0</div>
+          <div class="impact-label">Active researchers</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num" data-count="480" data-suffix="M">£0</div>
+          <div class="impact-label">Annual research income</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num" data-count="6200" data-suffix="+">0</div>
+          <div class="impact-label">Publications per year</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num" data-count="14" data-suffix="">0</div>
+          <div class="impact-label">Nobel alumni</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESEARCH AREAS ===== -->
+  <section>
+    <div class="container">
+      <span class="overline">Priority Themes</span>
+      <h2>Research <em>Areas</em></h2>
+      <p style="color:var(--text-muted); max-width:480px; margin-top:0.5rem;">Six interdisciplinary themes where Nexus concentrates its highest-impact research activity.</p>
+      <div class="research-grid">
+        <div class="research-cell" data-reveal>
+          <div class="research-num">01</div>
+          <h4>Climate &amp; Environment</h4>
+          <p>Atmospheric science, ocean systems, biodiversity, and evidence-based climate policy at global scale.</p>
+        </div>
+        <div class="research-cell" data-reveal>
+          <div class="research-num">02</div>
+          <h4>Health &amp; Longevity</h4>
+          <p>Cancer biology, dementia, infectious disease, and the translation of discoveries into treatments.</p>
+        </div>
+        <div class="research-cell" data-reveal>
+          <div class="research-num">03</div>
+          <h4>Digital Society &amp; AI</h4>
+          <p>Machine learning, digital ethics, cybersecurity and the social impact of emerging technologies.</p>
+        </div>
+        <div class="research-cell" data-reveal>
+          <div class="research-num">04</div>
+          <h4>Justice &amp; Governance</h4>
+          <p>Human rights law, global institutions, inequality, and democratic accountability.</p>
+        </div>
+        <div class="research-cell" data-reveal>
+          <div class="research-num">05</div>
+          <h4>Future Energy Systems</h4>
+          <p>Hydrogen, fusion, battery storage, smart grids, and the economics of decarbonisation.</p>
+        </div>
+        <div class="research-cell" data-reveal>
+          <div class="research-num">06</div>
+          <h4>Mind, Brain &amp; Behaviour</h4>
+          <p>Cognitive neuroscience, developmental psychology, language acquisition and mental health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CENTRES OF EXCELLENCE ===== -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Research Centres</span>
+      <h2>Centres of <em>Excellence</em></h2>
+      <div class="centre-list">
+        <div class="centre-row" data-reveal>
+          <div class="centre-year">Est. 2008</div>
+          <div>
+            <h4>Nexus Centre for AI &amp; Human Values</h4>
+            <p>Interdisciplinary hub studying the alignment of advanced AI systems with human ethics and society.</p>
+          </div>
+          <div class="centre-funding">£32M funded</div>
+        </div>
+        <div class="centre-row" data-reveal>
+          <div class="centre-year">Est. 2012</div>
+          <div>
+            <h4>Institute for Climate Science &amp; Policy</h4>
+            <p>Leading advisory body for IPCC, UK government and UN climate negotiations.</p>
+          </div>
+          <div class="centre-funding">£58M funded</div>
+        </div>
+        <div class="centre-row" data-reveal>
+          <div class="centre-year">Est. 2015</div>
+          <div>
+            <h4>Translational Cancer Research Centre</h4>
+            <p>Bench-to-bedside oncology research with direct clinical trials in NHS partner hospitals.</p>
+          </div>
+          <div class="centre-funding">£74M funded</div>
+        </div>
+        <div class="centre-row" data-reveal>
+          <div class="centre-year">Est. 2019</div>
+          <div>
+            <h4>Centre for Global Justice &amp; Human Rights</h4>
+            <p>Legal scholarship, policy advocacy and clinical legal training on international human rights.</p>
+          </div>
+          <div class="centre-funding">£18M funded</div>
+        </div>
+        <div class="centre-row" data-reveal>
+          <div class="centre-year">Est. 2021</div>
+          <div>
+            <h4>Nexus Energy Futures Laboratory</h4>
+            <p>Prototype testing and modelling for next-generation green hydrogen and fusion technology.</p>
+          </div>
+          <div class="centre-funding">£91M funded</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RECENT PUBLICATIONS ===== -->
+  <section>
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:0.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <span class="overline">Selected Publications</span>
+          <h2>Recent <em>Work</em></h2>
+        </div>
+        <a href="#" class="btn btn-dark" style="font-size:0.72rem;">View All Research</a>
+      </div>
+      <div class="pub-list">
+        <div class="pub-item" data-reveal>
+          <div class="pub-year">2024</div>
+          <div class="pub-body">
+            <div class="pub-journal">Nature Climate Change</div>
+            <h4>Tipping cascades in coupled Earth system models under 2°C warming scenarios</h4>
+            <div class="pub-authors">Okafor, T., Lindström, E., Chen, W. et al. — Nexus Institute for Climate Science</div>
+          </div>
+        </div>
+        <div class="pub-item" data-reveal>
+          <div class="pub-year">2024</div>
+          <div class="pub-body">
+            <div class="pub-journal">The Lancet Digital Health</div>
+            <h4>Large language model diagnostic accuracy in rare genetic diseases: a systematic review</h4>
+            <div class="pub-authors">Patel, A., Müller, J., Williams, S. — Nexus Centre for AI &amp; Human Values</div>
+          </div>
+        </div>
+        <div class="pub-item" data-reveal>
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <div class="pub-journal">Cell</div>
+            <h4>Epigenetic reprogramming reverses ageing phenotypes in murine cardiac tissue</h4>
+            <div class="pub-authors">Nakamura, H., Singh, R., Torres, M. — Translational Cancer Research Centre</div>
+          </div>
+        </div>
+        <div class="pub-item" data-reveal>
+          <div class="pub-year">2023</div>
+          <div class="pub-body">
+            <div class="pub-journal">Journal of Human Rights</div>
+            <h4>Extraterritorial jurisdiction and digital surveillance: filling the normative gap</h4>
+            <div class="pub-authors">Adeyemi, K., Rousseau, C. — Centre for Global Justice &amp; Human Rights</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GLOBAL PARTNERS ===== -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Collaboration Network</span>
+      <h2>Global <em>Partners</em></h2>
+      <p style="color:var(--text-muted); max-width:480px; margin-top:0.5rem;">Research partnerships with 200+ universities and institutions across six continents.</p>
+      <div class="partner-grid">
+        <div class="partner-tile"><span>MIT</span></div>
+        <div class="partner-tile"><span>ETH Zürich</span></div>
+        <div class="partner-tile"><span>Kyoto Univ.</span></div>
+        <div class="partner-tile"><span>UCT</span></div>
+        <div class="partner-tile"><span>Harvard</span></div>
+        <div class="partner-tile"><span>INSEAD</span></div>
+        <div class="partner-tile"><span>NUS</span></div>
+        <div class="partner-tile"><span>UNAM</span></div>
+        <div class="partner-tile"><span>Toronto</span></div>
+        <div class="partner-tile"><span>ANU</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll-reveal -->
+  <style>
+    [data-reveal] { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease-smooth), transform .7s var(--ease-smooth); }
+    [data-reveal].revealed { opacity:1; transform:none; }
+  </style>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

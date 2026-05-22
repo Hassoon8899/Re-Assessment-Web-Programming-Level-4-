@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus University — Campus Life</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- Campus feature cards ---- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .feature-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-img svg {
+      width: 100%;
+      height: 100%;
+    }
+    .feature-body {
+      padding: 1.8rem;
+    }
+    .feature-body h4 { margin-bottom: 0.6rem; }
+    .feature-body p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* ---- Clubs mosaic ---- */
+    .clubs-mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .club-tile {
+      padding: 1.5rem 1.2rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .club-tile:hover {
+      border-color: var(--accent);
+      background: var(--off-white);
+    }
+    .club-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.7rem;
+      display: block;
+      line-height: 1;
+    }
+    .club-tile h5 {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+    .club-tile span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ---- Accommodation ---- */
+    .accom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .accom-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    .accom-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .accom-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .accom-card h4 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .accom-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .accom-price {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--black);
+    }
+    .accom-price sub {
+      font-size: 0.85rem;
+      font-family: var(--font-body);
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ---- Campus map placeholder ---- */
+    .map-placeholder {
+      width: 100%;
+      aspect-ratio: 2/1;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+    .map-placeholder svg {
+      width: 40px;
+      height: 40px;
+      opacity: 0.3;
+    }
+    .map-placeholder span {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    /* ---- Campus SVG illustrations ---- */
+    .campus-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .campus-panel {
+      aspect-ratio: 4/3;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .accom-grid { grid-template-columns: 1fr 1fr; }
+      .clubs-mosaic { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .accom-grid { grid-template-columns: 1fr; }
+      .clubs-mosaic { grid-template-columns: repeat(2, 1fr); }
+      .campus-panel-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <div class="page-hero" style="padding-top: calc(var(--nav-h) + 4rem);">
+    <div class="container">
+      <span class="overline">Student Life &amp; Wellbeing</span>
+      <div class="rule"></div>
+      <h1 class="anim-fade-up">Campus <em>Life</em></h1>
+      <p class="anim-fade-up delay-1" style="max-width:540px; color:var(--text-muted); font-size:1.1rem; margin-top:1rem;">
+        175 acres of award-winning campus in the heart of Oxford. Sport, culture, community, and everything in between.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== CAMPUS PANELS (visual) ===== -->
+  <section>
+    <div class="container">
+      <div class="campus-panel-grid">
+        <!-- Panel 1: Library -->
+        <div class="campus-panel">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-label="Nexus Library building">
+            <rect width="300" height="225" fill="#f0efe9"/>
+            <!-- Sky -->
+            <rect width="300" height="130" fill="#dde8f0" opacity="0.5"/>
+            <!-- Library building -->
+            <rect x="40" y="80" width="220" height="130" fill="#dddcd6"/>
+            <rect x="40" y="80" width="220" height="130" fill="none" stroke="#c8c7c0" stroke-width="1"/>
+            <!-- Columns -->
+            <rect x="60"  y="95" width="14" height="115" fill="#c8c7c0"/>
+            <rect x="95"  y="95" width="14" height="115" fill="#c8c7c0"/>
+            <rect x="130" y="95" width="14" height="115" fill="#c8c7c0"/>
+            <rect x="172" y="95" width="14" height="115" fill="#c8c7c0"/>
+            <rect x="207" y="95" width="14" height="115" fill="#c8c7c0"/>
+            <!-- Door -->
+            <rect x="128" y="165" width="44" height="45" fill="#a8a8a0"/>
+            <!-- Roof cornice -->
+            <rect x="35" y="76" width="230" height="8" fill="#c8c7c0"/>
+            <!-- Sign -->
+            <rect x="95" y="100" width="110" height="20" fill="#b8b7b0" rx="2"/>
+            <rect x="105" y="105" width="90" height="6" fill="#e0dfd8" rx="1"/>
+            <!-- Windows top -->
+            <rect x="60"  y="130" width="30" height="20" fill="#a8c4d8" opacity="0.6"/>
+            <rect x="100" y="130" width="30" height="20" fill="#a8c4d8" opacity="0.6"/>
+            <rect x="170" y="130" width="30" height="20" fill="#a8c4d8" opacity="0.6"/>
+            <rect x="210" y="130" width="30" height="20" fill="#a8c4d8" opacity="0.6"/>
+            <!-- Ground -->
+            <rect x="0" y="210" width="300" height="15" fill="#c8c7c0"/>
+            <!-- Trees -->
+            <circle cx="25"  cy="175" r="18" fill="#8fad6a" opacity="0.7"/>
+            <rect x="22" y="188" width="6" height="22" fill="#7a8a60"/>
+            <circle cx="275" cy="175" r="18" fill="#8fad6a" opacity="0.7"/>
+            <rect x="272" y="188" width="6" height="22" fill="#7a8a60"/>
+            <!-- Label -->
+            <text x="150" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#888" letter-spacing="1">NEXUS LIBRARY</text>
+          </svg>
+        </div>
+
+        <!-- Panel 2: Sports centre -->
+        <div class="campus-panel">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-label="Sports Centre">
+            <rect width="300" height="225" fill="#f0efe9"/>
+            <!-- Sky gradient simulation with flat bands -->
+            <rect width="300" height="100" fill="#e8eef3" opacity="0.6"/>
+            <!-- Sports hall building -->
+            <rect x="30" y="100" width="240" height="110" fill="#e0dfd8"/>
+            <!-- Arched roof -->
+            <path d="M30 100 Q150 40 270 100" fill="#d0cfc8" stroke="#c0bfb8" stroke-width="1"/>
+            <!-- Side windows strip -->
+            <rect x="50"  y="115" width="20" height="40" fill="#b0c8d8" opacity="0.5"/>
+            <rect x="80"  y="115" width="20" height="40" fill="#b0c8d8" opacity="0.5"/>
+            <rect x="200" y="115" width="20" height="40" fill="#b0c8d8" opacity="0.5"/>
+            <rect x="230" y="115" width="20" height="40" fill="#b0c8d8" opacity="0.5"/>
+            <!-- Main entrance -->
+            <rect x="120" y="150" width="60" height="60" fill="#a8a8a0"/>
+            <rect x="148" y="160" width="4" height="50" fill="#888"/>
+            <!-- Running track oval -->
+            <ellipse cx="150" cy="195" rx="100" ry="12" fill="none" stroke="#c8a96e" stroke-width="1.5" opacity="0.4"/>
+            <!-- Ground -->
+            <rect x="0" y="207" width="300" height="18" fill="#c0c8a0" opacity="0.5"/>
+            <text x="150" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#888" letter-spacing="1">SPORTS CENTRE</text>
+          </svg>
+        </div>
+
+        <!-- Panel 3: Student Union -->
+        <div class="campus-panel">
+          <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" aria-label="Student Union building">
+            <rect width="300" height="225" fill="#f0efe9"/>
+            <rect width="300" height="110" fill="#ede8df" opacity="0.6"/>
+            <!-- Modern building -->
+            <rect x="50" y="85" width="200" height="125" fill="#e8e7e0"/>
+            <!-- Glass facade panels -->
+            <rect x="55"  y="90"  width="45" height="60" fill="#b8d0e0" opacity="0.55"/>
+            <rect x="105" y="90"  width="45" height="60" fill="#b8d0e0" opacity="0.4"/>
+            <rect x="155" y="90"  width="45" height="60" fill="#b8d0e0" opacity="0.55"/>
+            <rect x="205" y="90"  width="40" height="60" fill="#b8d0e0" opacity="0.4"/>
+            <!-- Lower section -->
+            <rect x="55"  y="155" width="185" height="50" fill="#d8d7d0"/>
+            <!-- Door -->
+            <rect x="130" y="170" width="40" height="40" fill="#9898a0"/>
+            <!-- Rooftop bar -->
+            <rect x="50" y="82" width="200" height="6" fill="#c8a96e" opacity="0.8"/>
+            <!-- Diagonal accent stripe -->
+            <line x1="50" y1="85" x2="250" y2="110" stroke="#c8a96e" stroke-width="1" opacity="0.3"/>
+            <!-- Ground -->
+            <rect x="0" y="208" width="300" height="17" fill="#c0bfb8"/>
+            <!-- People silhouettes -->
+            <circle cx="90"  cy="200" r="5" fill="#888" opacity="0.3"/>
+            <circle cx="110" cy="202" r="5" fill="#888" opacity="0.3"/>
+            <circle cx="195" cy="200" r="5" fill="#888" opacity="0.3"/>
+            <text x="150" y="220" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#888" letter-spacing="1">STUDENT UNION</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAMPUS FEATURES ===== -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Facilities</span>
+      <h2>Everything You<br>Need to <em>Thrive</em></h2>
+      <div class="feature-grid">
+        <div class="feature-card" data-reveal>
+          <div class="feature-img" style="background:#edf2f7;">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Library shelves illustration -->
+              <rect width="400" height="225" fill="#edf2f7"/>
+              <rect x="30" y="20" width="12" height="190" fill="#c8b88a" opacity="0.6"/>
+              <rect x="50" y="20" width="12" height="190" fill="#d4c49a" opacity="0.6"/>
+              <rect x="72" y="40" width="12" height="170" fill="#c8b88a" opacity="0.6"/>
+              <rect x="92" y="30" width="10" height="180" fill="#b8a87a" opacity="0.6"/>
+              <rect x="110" y="50" width="14" height="160" fill="#d4c49a" opacity="0.6"/>
+              <!-- Shelves -->
+              <rect x="20" y="50"  width="200" height="4" fill="#b8a07a" opacity="0.5"/>
+              <rect x="20" y="110" width="200" height="4" fill="#b8a07a" opacity="0.5"/>
+              <rect x="20" y="170" width="200" height="4" fill="#b8a07a" opacity="0.5"/>
+              <!-- Reading desk -->
+              <rect x="230" y="130" width="140" height="10" fill="#d0c0a0" opacity="0.7"/>
+              <rect x="245" y="140" width="8" height="75" fill="#c0b090"/>
+              <rect x="352" y="140" width="8" height="75" fill="#c0b090"/>
+              <!-- Lamp -->
+              <line x1="290" y1="110" x2="290" y2="130" stroke="#888" stroke-width="2"/>
+              <circle cx="290" cy="108" r="8" fill="#f0e880" opacity="0.6"/>
+              <!-- Book on desk -->
+              <rect x="260" y="120" width="50" height="8" fill="#c8a96e" opacity="0.8" rx="2"/>
+              <!-- Window light -->
+              <rect x="340" y="20" width="50" height="100" fill="#e8f0f8" opacity="0.8"/>
+              <line x1="365" y1="20" x2="365" y2="120" stroke="#c0d0e0" stroke-width="1"/>
+              <line x1="340" y1="70" x2="390" y2="70" stroke="#c0d0e0" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h4>Nexus Library</h4>
+            <p>Over 1.2 million volumes, 24/7 study spaces, 300 PC workstations, and access to 80,000 online journals. The university library is open round the clock during term.</p>
+          </div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="feature-img" style="background:#eef6ee;">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Sports pitch / pool illustration -->
+              <rect width="400" height="225" fill="#eef6ee"/>
+              <!-- Football pitch -->
+              <rect x="20" y="40" width="240" height="160" fill="#7ab06a" opacity="0.7"/>
+              <!-- Pitch lines -->
+              <rect x="20" y="40" width="240" height="160" fill="none" stroke="white" stroke-width="2" opacity="0.7"/>
+              <line x1="140" y1="40"  x2="140" y2="200" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <circle cx="140" cy="120" r="28" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+              <circle cx="140" cy="120" r="3" fill="white" opacity="0.7"/>
+              <!-- Goals -->
+              <rect x="20"  y="100" width="12" height="40" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
+              <rect x="248" y="100" width="12" height="40" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
+              <!-- Player dots -->
+              <circle cx="80"  cy="90"  r="5" fill="white" opacity="0.6"/>
+              <circle cx="110" cy="140" r="5" fill="#c8a96e" opacity="0.8"/>
+              <circle cx="170" cy="80"  r="5" fill="white" opacity="0.6"/>
+              <circle cx="200" cy="150" r="5" fill="#c8a96e" opacity="0.8"/>
+              <!-- Pool on right -->
+              <rect x="275" y="60" width="110" height="120" fill="#4090c0" opacity="0.4" rx="4"/>
+              <line x1="275" y1="88"  x2="385" y2="88"  stroke="white" stroke-width="1" opacity="0.5"/>
+              <line x1="275" y1="120" x2="385" y2="120" stroke="white" stroke-width="1" opacity="0.5"/>
+              <line x1="275" y1="152" x2="385" y2="152" stroke="white" stroke-width="1" opacity="0.5"/>
+              <text x="330" y="125" text-anchor="middle" font-family="Georgia" font-size="9" fill="white" opacity="0.7">25m Pool</text>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h4>Sports &amp; Wellness Centre</h4>
+            <p>Olympic-standard facilities including a 25-metre swimming pool, eight-lane athletics track, gymnasium, climbing wall and squash courts. Free for all enrolled students.</p>
+          </div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="feature-img" style="background:#fdf5ec;">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Café / dining illustration -->
+              <rect width="400" height="225" fill="#fdf5ec"/>
+              <!-- Counter -->
+              <rect x="20" y="120" width="360" height="60" fill="#d4b88a" opacity="0.6"/>
+              <rect x="20" y="115" width="360" height="8" fill="#b89060"/>
+              <!-- Coffee machine -->
+              <rect x="40" y="80" width="50" height="38" fill="#888" opacity="0.7" rx="3"/>
+              <circle cx="55" cy="96" r="8" fill="#c8a96e" opacity="0.9"/>
+              <circle cx="75" cy="96" r="8" fill="#c8a96e" opacity="0.9"/>
+              <!-- Cups in row -->
+              <ellipse cx="130" cy="118" rx="10" ry="4" fill="#e0c8a0"/>
+              <ellipse cx="155" cy="118" rx="10" ry="4" fill="#e0c8a0"/>
+              <ellipse cx="180" cy="118" rx="10" ry="4" fill="#e0c8a0"/>
+              <!-- Cakes on stand -->
+              <ellipse cx="260" cy="115" rx="25" ry="6" fill="#e8b0b0" opacity="0.7"/>
+              <rect x="252" y="100" width="16" height="16" fill="#f0c8a0" rx="2"/>
+              <rect x="272" y="103" width="14" height="13" fill="#f0a8a0" rx="2"/>
+              <!-- Tables -->
+              <ellipse cx="320" cy="170" rx="40" ry="12" fill="#c0a080" opacity="0.5"/>
+              <rect x="316" y="170" width="8" height="45" fill="#b09070"/>
+              <ellipse cx="100" cy="180" rx="40" ry="12" fill="#c0a080" opacity="0.5"/>
+              <rect x="96" y="180" width="8" height="35" fill="#b09070"/>
+              <!-- Hanging lights -->
+              <line x1="100" y1="0" x2="100" y2="60" stroke="#888" stroke-width="1"/>
+              <circle cx="100" cy="62" r="6" fill="#f8e870" opacity="0.7"/>
+              <line x1="200" y1="0" x2="200" y2="50" stroke="#888" stroke-width="1"/>
+              <circle cx="200" cy="52" r="6" fill="#f8e870" opacity="0.7"/>
+              <line x1="300" y1="0" x2="300" y2="65" stroke="#888" stroke-width="1"/>
+              <circle cx="300" cy="67" r="6" fill="#f8e870" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h4>Dining &amp; Social Spaces</h4>
+            <p>Four on-campus cafés, a main dining hall, and two student-run eateries serving 30+ dietary options. Welcoming social spaces designed for collaboration and community.</p>
+          </div>
+        </div>
+
+        <div class="feature-card" data-reveal>
+          <div class="feature-img" style="background:#f4f0f8;">
+            <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Arts centre / theatre illustration -->
+              <rect width="400" height="225" fill="#f4f0f8"/>
+              <!-- Stage -->
+              <ellipse cx="200" cy="170" rx="160" ry="40" fill="#3a3050" opacity="0.8"/>
+              <!-- Curtains -->
+              <path d="M0 0 Q60 80 40 225" fill="#8060a8" opacity="0.4"/>
+              <path d="M400 0 Q340 80 360 225" fill="#8060a8" opacity="0.4"/>
+              <!-- Stage lights -->
+              <polygon points="60,40 40,0 80,0" fill="#c8a96e" opacity="0.7"/>
+              <polygon points="150,30 130,0 170,0" fill="#c8a96e" opacity="0.6"/>
+              <polygon points="250,30 230,0 270,0" fill="#c8a96e" opacity="0.6"/>
+              <polygon points="340,40 320,0 360,0" fill="#c8a96e" opacity="0.7"/>
+              <!-- Performer silhouette -->
+              <circle cx="200" cy="148" r="10" fill="#faf0e8" opacity="0.8"/>
+              <line x1="200" y1="158" x2="200" y2="185" stroke="#faf0e8" stroke-width="3" opacity="0.8"/>
+              <line x1="200" y1="165" x2="180" y2="175" stroke="#faf0e8" stroke-width="2" opacity="0.8"/>
+              <line x1="200" y1="165" x2="220" y2="175" stroke="#faf0e8" stroke-width="2" opacity="0.8"/>
+              <!-- Rows of seats -->
+              <g opacity="0.25">
+                <rect x="60" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="75" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="90" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="105" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="120" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="280" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="295" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="310" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+                <rect x="325" y="195" width="8" height="6" rx="2" fill="#5040a0"/>
+              </g>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h4>Arts &amp; Culture Centre</h4>
+            <p>A 500-seat performance theatre, two gallery spaces, recording studios and rehearsal rooms. Home to student theatre groups, orchestras, and regular visiting artist residencies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLUBS & SOCIETIES ===== -->
+  <section>
+    <div class="container">
+      <span class="overline">Student Societies</span>
+      <div class="rule"></div>
+      <h2>200+ Clubs &amp; <em>Societies</em></h2>
+      <p style="color:var(--text-muted); max-width:500px; margin-top:0.5rem;">From competitive robotics to jazz improvisation — there's a community for every interest at Nexus.</p>
+      <div class="clubs-mosaic">
+        <div class="club-tile"><span class="club-icon">🏊</span><h5>Swimming Club</h5><span>280 members</span></div>
+        <div class="club-tile"><span class="club-icon">🎭</span><h5>Drama Society</h5><span>145 members</span></div>
+        <div class="club-tile"><span class="club-icon">💻</span><h5>Coding Society</h5><span>420 members</span></div>
+        <div class="club-tile"><span class="club-icon">♟️</span><h5>Chess Club</h5><span>90 members</span></div>
+        <div class="club-tile"><span class="club-icon">🎸</span><h5>Music &amp; Jazz</h5><span>180 members</span></div>
+        <div class="club-tile"><span class="club-icon">🌍</span><h5>Model UN</h5><span>120 members</span></div>
+        <div class="club-tile"><span class="club-icon">📸</span><h5>Photography</h5><span>200 members</span></div>
+        <div class="club-tile"><span class="club-icon">🤖</span><h5>Robotics</h5><span>310 members</span></div>
+        <div class="club-tile"><span class="club-icon">🎨</span><h5>Fine Arts</h5><span>160 members</span></div>
+        <div class="club-tile"><span class="club-icon">🏃</span><h5>Athletics</h5><span>380 members</span></div>
+        <div class="club-tile"><span class="club-icon">🌱</span><h5>Sustainability</h5><span>240 members</span></div>
+        <div class="club-tile"><span class="club-icon">📰</span><h5>Student Press</h5><span>95 members</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACCOMMODATION ===== -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Where You'll Live</span>
+      <div class="rule"></div>
+      <h2>Student <em>Accommodation</em></h2>
+      <p style="color:var(--text-muted); max-width:520px; margin-top:0.5rem; margin-bottom:0;">Guaranteed accommodation for all first-year undergraduates within 10 minutes of campus.</p>
+      <div class="accom-grid">
+        <div class="accom-card" data-reveal>
+          <span class="accom-type">En-suite</span>
+          <h4>Whitmore Hall</h4>
+          <p>Modern en-suite rooms in our flagship residence. All bills included, high-speed fibre, and a common room on every floor.</p>
+          <div class="accom-price">£165 <sub>/ week</sub></div>
+        </div>
+        <div class="accom-card" data-reveal>
+          <span class="accom-type">Shared</span>
+          <h4>Langford House</h4>
+          <p>Shared bathroom facilities in a community-focused setting. Popular with students who value social living and affordability.</p>
+          <div class="accom-price">£118 <sub>/ week</sub></div>
+        </div>
+        <div class="accom-card" data-reveal>
+          <span class="accom-type">Self-catered Flat</span>
+          <h4>Pennine Apartments</h4>
+          <p>Six-bed self-catered flats ideal for second and third year students. Private kitchen, living area, and outdoor space.</p>
+          <div class="accom-price">£145 <sub>/ week</sub></div>
+        </div>
+      </div>
+      <div style="margin-top:2rem;">
+        <a href="contact.html" class="btn btn-dark">Enquire About Accommodation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAMPUS MAP ===== -->
+  <section>
+    <div class="container">
+      <span class="overline">Find Us</span>
+      <h2>Our <em>Campus</em></h2>
+      <p style="color:var(--text-muted); margin-top:0.5rem;">175 acres in central Oxford, 10 minutes walk from Oxford rail station.</p>
+      <div class="map-placeholder">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 4C14.477 4 10 8.477 10 14c0 8.25 10 22 10 22s10-13.75 10-22c0-5.523-4.477-10-10-10z" stroke="#888" stroke-width="1.5"/>
+          <circle cx="20" cy="14" r="3" stroke="#888" stroke-width="1.5"/>
+        </svg>
+        <span>Interactive map — Nexus University, Oxford OX1 4NX</span>
+        <a href="contact.html" class="btn btn-dark" style="font-size:0.72rem;">Get Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll-reveal -->
+  <style>
+    [data-reveal] { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease-smooth), transform .7s var(--ease-smooth); }
+    [data-reveal].revealed { opacity:1; transform:none; }
+  </style>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

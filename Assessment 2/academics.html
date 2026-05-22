@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus University — Academics</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- Filter tabs ---- */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .filter-btn {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ---- Programme grid ---- */
+    .prog-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .prog-item {
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .prog-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(200,169,110,0.1);
+    }
+    .prog-item[data-hidden="true"] { display: none; }
+    .prog-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .prog-item h4 { margin-bottom: 0.5rem; font-size: 1rem; }
+    .prog-item .duration {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .prog-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* ---- Study levels ---- */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .level-item {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .level-item:last-child { border-right: none; }
+    .level-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .level-icon svg { width: 22px; height: 22px; }
+    .level-item h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+    .level-item p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+    /* ---- Requirements table ---- */
+    .req-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+    .req-table th, .req-table td {
+      text-align: left;
+      padding: 1rem 1.5rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .req-table th {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      background: var(--off-white);
+    }
+    .req-table td { font-weight: 300; }
+    .req-table tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 900px) {
+      .prog-list { grid-template-columns: 1fr 1fr; }
+      .levels-grid { grid-template-columns: 1fr; }
+      .level-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .level-item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 600px) {
+      .prog-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== PAGE HERO ===== -->
+  <div class="page-hero" style="padding-top: calc(var(--nav-h) + 4rem);">
+    <div class="container">
+      <span class="overline">Faculties &amp; Programmes</span>
+      <div class="rule"></div>
+      <h1 class="anim-fade-up">Academics</h1>
+      <p class="anim-fade-up delay-1" style="max-width:560px; color:var(--text-muted); font-size:1.1rem; margin-top:1rem;">
+        Sixty programmes across eight faculties. Choose a course, discover your discipline, or design your own interdisciplinary path.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== STUDY LEVELS ===== -->
+  <section>
+    <div class="container">
+      <span class="overline">Study Levels</span>
+      <h2>Where Would You<br><em>Like to Begin?</em></h2>
+      <div class="levels-grid">
+        <div class="level-item">
+          <div class="level-icon">
+            <!-- Graduation cap icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <h3>Undergraduate</h3>
+          <p>Three- and four-year programmes leading to a Bachelor's degree. 40 programmes across all faculties, including integrated Masters.</p>
+          <a href="#programmes" class="btn btn-dark">Browse UG Courses</a>
+        </div>
+        <div class="level-item">
+          <div class="level-icon">
+            <!-- Academic book -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+            </svg>
+          </div>
+          <h3>Postgraduate</h3>
+          <p>Taught Masters (MSc, MA, MBA, LLM) and specialist postgraduate certificates for career changers and professionals.</p>
+          <a href="#programmes" class="btn btn-dark">Browse PG Courses</a>
+        </div>
+        <div class="level-item">
+          <div class="level-icon">
+            <!-- Research flask -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
+              <path d="M9 12h6"/>
+            </svg>
+          </div>
+          <h3>Doctoral (PhD)</h3>
+          <p>Research degrees supervised by world-leading academics. DPhil, PhD, and professional doctorates available in all faculties.</p>
+          <a href="research.html" class="btn btn-dark">Research Degrees</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMME BROWSER ===== -->
+  <section id="programmes" style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Course Finder</span>
+      <h2>Browse <em>Programmes</em></h2>
+
+      <!-- Filter bar -->
+      <div class="filter-bar" role="group" aria-label="Filter programmes by faculty">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="arts">Arts &amp; Humanities</button>
+        <button class="filter-btn" data-filter="science">Science &amp; Engineering</button>
+        <button class="filter-btn" data-filter="business">Business &amp; Law</button>
+        <button class="filter-btn" data-filter="medicine">Medicine</button>
+        <button class="filter-btn" data-filter="tech">Computer Science</button>
+        <button class="filter-btn" data-filter="education">Education</button>
+      </div>
+
+      <!-- Programme cards -->
+      <div class="prog-list" id="progList">
+
+        <div class="prog-item" data-cat="arts">
+          <span class="prog-tag">Arts &amp; Humanities</span>
+          <h4>BA Philosophy</h4>
+          <p>Logic, ethics, metaphysics, and the history of ideas from Plato to contemporary theory.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="arts">
+          <span class="prog-tag">Arts &amp; Humanities</span>
+          <h4>BA English Literature</h4>
+          <p>From Chaucer to contemporary postcolonial fiction — a rich journey through the written word.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="arts">
+          <span class="prog-tag">Social Sciences</span>
+          <h4>BSc Politics &amp; International Relations</h4>
+          <p>Power, governance, diplomacy and the forces shaping our global order.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="science">
+          <span class="prog-tag">Science &amp; Engineering</span>
+          <h4>MEng Civil Engineering</h4>
+          <p>Structures, geotechnics, hydraulics and infrastructure design for a sustainable world.</p>
+          <div class="duration">4 years · Integrated Masters</div>
+        </div>
+
+        <div class="prog-item" data-cat="science">
+          <span class="prog-tag">Science &amp; Engineering</span>
+          <h4>BSc Physics</h4>
+          <p>Quantum mechanics, astrophysics, condensed matter and experimental lab work.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="science">
+          <span class="prog-tag">Science &amp; Engineering</span>
+          <h4>MSc Renewable Energy Systems</h4>
+          <p>Solar, wind, tidal and grid-scale storage technologies for the energy transition.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="business">
+          <span class="prog-tag">Business &amp; Law</span>
+          <h4>LLB Law</h4>
+          <p>English and Welsh common law, EU law, human rights, and clinical legal experience.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="business">
+          <span class="prog-tag">Business</span>
+          <h4>MBA (Executive)</h4>
+          <p>A 12-month intensive for mid-career professionals. Strategy, finance, and leadership.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="business">
+          <span class="prog-tag">Business</span>
+          <h4>BSc Accounting &amp; Finance</h4>
+          <p>Financial reporting, corporate finance, taxation and quantitative analysis.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="medicine">
+          <span class="prog-tag">Medicine</span>
+          <h4>MBChB Medicine</h4>
+          <p>A five-year clinical programme at our NHS-affiliated teaching hospital and partner trusts.</p>
+          <div class="duration">5 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="medicine">
+          <span class="prog-tag">Health Sciences</span>
+          <h4>BSc Nursing (Adult)</h4>
+          <p>Patient-centred care, clinical skills, and evidence-based practice on NHS placements.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="medicine">
+          <span class="prog-tag">Health Sciences</span>
+          <h4>MSc Public Health</h4>
+          <p>Epidemiology, global health policy, health systems and disease prevention.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="tech">
+          <span class="prog-tag">Computer Science</span>
+          <h4>BSc Computer Science</h4>
+          <p>Algorithms, systems, software engineering, and a specialisation in your second year.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="tech">
+          <span class="prog-tag">Computer Science</span>
+          <h4>MSc Artificial Intelligence</h4>
+          <p>Machine learning, deep learning, NLP, computer vision and AI ethics.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="tech">
+          <span class="prog-tag">Computer Science</span>
+          <h4>MSc Cybersecurity</h4>
+          <p>Cryptography, network defence, penetration testing and secure system design.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="education">
+          <span class="prog-tag">Education</span>
+          <h4>PGCE Secondary Education</h4>
+          <p>QTS-leading teacher training with 120 days on placement in partner schools.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="education">
+          <span class="prog-tag">Psychology</span>
+          <h4>BSc Psychology</h4>
+          <p>Cognitive, developmental, social, and clinical psychology with BPS accreditation.</p>
+          <div class="duration">3 years · Undergraduate</div>
+        </div>
+
+        <div class="prog-item" data-cat="education">
+          <span class="prog-tag">Education</span>
+          <h4>MA Educational Research</h4>
+          <p>Qualitative and quantitative research methods applied to learning and policy.</p>
+          <div class="duration">1 year · Postgraduate</div>
+        </div>
+
+      </div><!-- /.prog-list -->
+    </div>
+  </section>
+
+  <!-- ===== ENTRY REQUIREMENTS ===== -->
+  <section>
+    <div class="container">
+      <div style="max-width:800px;">
+        <span class="overline">Admissions</span>
+        <div class="rule"></div>
+        <h2>Entry <em>Requirements</em></h2>
+        <p style="color:var(--text-muted); margin-top:0.5rem;">Standard entry requirements by level of study. Individual programmes may have additional subject requirements.</p>
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Typical Offer</th>
+              <th>IELTS (International)</th>
+              <th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Undergraduate</td>
+              <td>AAB – AAA at A-Level</td>
+              <td>6.5 overall (6.0 each)</td>
+              <td>15 Jan 2025 (UCAS)</td>
+            </tr>
+            <tr>
+              <td>Postgraduate Taught</td>
+              <td>2:1 Honours degree</td>
+              <td>7.0 overall (6.5 each)</td>
+              <td>Rolling admissions</td>
+            </tr>
+            <tr>
+              <td>PhD / Doctoral</td>
+              <td>Masters degree (Merit)</td>
+              <td>7.5 overall (7.0 each)</td>
+              <td>Rolling admissions</td>
+            </tr>
+            <tr>
+              <td>Medicine (MBChB)</td>
+              <td>AAA incl. Chemistry &amp; Biology</td>
+              <td>7.5 overall</td>
+              <td>15 Oct 2024 (UCAS)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:2rem;">
+          <a href="contact.html" class="btn btn-dark">Get Advice from Admissions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll-reveal -->
+  <style>
+    [data-reveal] { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease-smooth), transform .7s var(--ease-smooth); }
+    [data-reveal].revealed { opacity:1; transform:none; }
+  </style>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ---- Filter logic ---- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const progItems  = document.querySelectorAll('.prog-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        progItems.forEach(item => {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.removeAttribute('data-hidden');
+          } else {
+            item.setAttribute('data-hidden', 'true');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

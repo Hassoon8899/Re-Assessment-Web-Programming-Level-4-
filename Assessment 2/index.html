@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus University — Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Page-specific styles -->
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: var(--nav-h);
+      overflow: hidden;
+    }
+    .hero-text {
+      padding: 6rem 0 6rem 0;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero-eyebrow span {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      max-width: 420px;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-link {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: var(--transition);
+    }
+    .hero-link:hover { color: var(--black); border-color: var(--black); }
+
+    /* Hero visual panel */
+    .hero-visual {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--off-white);
+    }
+    /* Abstract geometric composition */
+    .hero-visual svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem;
+      left: 3rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.6rem;
+      font-size: 0.78rem;
+    }
+    .hero-badge strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ---- MARQUEE ---- */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      background: var(--off-white);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .marquee-track .dot {
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ---- STATS SECTION ---- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item:nth-child(4n) { border-right: none; }
+
+    /* ---- ABOUT STRIP ---- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-img-float {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 55%;
+      aspect-ratio: 1;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-img-float span {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--accent);
+    }
+    .about-text h2 { margin-bottom: 1.2rem; }
+    .about-text p { margin-bottom: 1.5rem; }
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.8rem 0 2rem;
+    }
+    .pillar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+    .pillar::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ---- PROGRAMMES PREVIEW ---- */
+    .programmes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+    .prog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .prog-card {
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .prog-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .prog-card:hover::before { transform: scaleX(1); }
+    .prog-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .prog-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+      transition: color var(--transition);
+    }
+    .prog-card:hover .prog-num { color: var(--accent); }
+    .prog-card h4 { margin-bottom: 0.6rem; }
+    .prog-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .prog-arrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .prog-card:hover .prog-arrow { color: var(--accent); }
+
+    /* ---- CTA BAND ---- */
+    .cta-band {
+      background: var(--black);
+      padding: 6rem 0;
+    }
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
+      align-items: center;
+    }
+    .cta-band h2 {
+      color: var(--white);
+    }
+    .cta-band h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* ---- TESTIMONIAL ---- */
+    .testimonial-section {
+      background: var(--off-white);
+      padding: 7rem 0;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: var(--white);
+      padding: 2.2rem;
+      border: 1px solid var(--border);
+    }
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.6;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .testimonial-card p {
+      font-size: 0.95rem;
+      font-style: italic;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .testimonial-author strong {
+      display: block;
+      color: var(--black);
+      margin-bottom: 0.2rem;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-visual { height: 50vw; min-height: 300px; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .prog-grid { grid-template-columns: 1fr 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .prog-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .programmes-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .about-img-float { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav & Footer injected by components.js -->
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" style="padding-top: var(--nav-h); padding-bottom: 0;">
+    <div class="container" style="padding-top:4rem; padding-bottom:4rem;">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span>Est. 1962 &nbsp;·&nbsp; Oxford, UK</span>
+        </div>
+        <h1 class="anim-fade-up">
+          Think<br><em>Beyond</em><br>Boundaries.
+        </h1>
+        <p class="hero-sub anim-fade-up delay-1">
+          Nexus University is a leading research institution dedicated to curiosity, innovation, and academic excellence across 60 disciplines.
+        </p>
+        <div class="hero-actions anim-fade-up delay-2">
+          <a href="contact.html" class="btn btn-dark">Apply for 2025</a>
+          <a href="academics.html" class="hero-link">View Programmes →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right visual panel -->
+    <div class="hero-visual anim-fade-in delay-1">
+      <div class="hero-visual-bg"></div>
+      <!-- Abstract SVG composition representing academic/intellectual growth -->
+      <svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Grid of dots -->
+        <g opacity="0.15">
+          <circle cx="80"  cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="80"  r="2.5" fill="#0d0d0d"/>
+          <circle cx="80"  cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="160" r="2.5" fill="#0d0d0d"/>
+          <circle cx="80"  cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="240" r="2.5" fill="#0d0d0d"/>
+          <circle cx="80"  cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="320" r="2.5" fill="#0d0d0d"/>
+          <circle cx="80"  cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="400" r="2.5" fill="#0d0d0d"/>
+          <circle cx="80"  cy="480" r="2.5" fill="#0d0d0d"/>
+          <circle cx="160" cy="480" r="2.5" fill="#0d0d0d"/>
+          <circle cx="240" cy="480" r="2.5" fill="#0d0d0d"/>
+          <circle cx="320" cy="480" r="2.5" fill="#0d0d0d"/>
+          <circle cx="400" cy="480" r="2.5" fill="#0d0d0d"/>
+          <circle cx="480" cy="480" r="2.5" fill="#0d0d0d"/>
+        </g>
+        <!-- Large circle outline -->
+        <circle cx="300" cy="380" r="200" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.5"/>
+        <!-- Inner circle -->
+        <circle cx="300" cy="380" r="120" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.4"/>
+        <!-- Diagonal lines -->
+        <line x1="100" y1="580" x2="500" y2="180" stroke="#0d0d0d" stroke-width="0.5" opacity="0.12"/>
+        <line x1="100" y1="180" x2="500" y2="580" stroke="#0d0d0d" stroke-width="0.5" opacity="0.12"/>
+        <!-- Central mark -->
+        <rect x="280" y="360" width="40" height="40" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+        <rect x="288" y="368" width="24" height="24" fill="#c8a96e" opacity="0.9"/>
+        <!-- Arch / building silhouette (abstract university) -->
+        <path d="M 160 620 L 160 540 Q 160 500 200 500 Q 240 500 240 540 L 240 620 Z" fill="#0d0d0d" opacity="0.07"/>
+        <path d="M 240 620 L 240 510 Q 240 460 300 460 Q 360 460 360 510 L 360 620 Z" fill="#0d0d0d" opacity="0.1"/>
+        <path d="M 360 620 L 360 540 Q 360 500 400 500 Q 440 500 440 540 L 440 620 Z" fill="#0d0d0d" opacity="0.07"/>
+        <!-- Top spire -->
+        <polygon points="300,340 290,380 310,380" fill="#c8a96e" opacity="0.7"/>
+        <!-- Year number watermark -->
+        <text x="300" y="730" text-anchor="middle" font-family="Georgia, serif" font-size="96" fill="#0d0d0d" opacity="0.05" font-weight="300">1962</text>
+      </svg>
+      <!-- Badge overlay -->
+      <div class="hero-badge">
+        <strong class="anim-fade-up delay-3">#7</strong>
+        <span style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); font-weight:400;">UK University Rankings 2024</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Arts &amp; Humanities</span><span class="dot">·</span>
+      <span>Engineering</span><span class="dot">·</span>
+      <span>Law &amp; Governance</span><span class="dot">·</span>
+      <span>Life Sciences</span><span class="dot">·</span>
+      <span>Business &amp; Economics</span><span class="dot">·</span>
+      <span>Computer Science</span><span class="dot">·</span>
+      <span>Medicine</span><span class="dot">·</span>
+      <span>Social Sciences</span><span class="dot">·</span>
+      <!-- Duplicate for seamless loop -->
+      <span>Arts &amp; Humanities</span><span class="dot">·</span>
+      <span>Engineering</span><span class="dot">·</span>
+      <span>Law &amp; Governance</span><span class="dot">·</span>
+      <span>Life Sciences</span><span class="dot">·</span>
+      <span>Business &amp; Economics</span><span class="dot">·</span>
+      <span>Computer Science</span><span class="dot">·</span>
+      <span>Medicine</span><span class="dot">·</span>
+      <span>Social Sciences</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- ===== STATS ===== -->
+  <section style="padding:0;">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num" data-count="24000" data-suffix="+">0</div>
+        <div class="stat-label">Students enrolled</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="60" data-suffix="">0</div>
+        <div class="stat-label">Academic programmes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="120" data-suffix="+">0</div>
+        <div class="stat-label">Nations represented</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="98" data-suffix="%">0</div>
+        <div class="stat-label">Graduate employment rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual" data-reveal>
+          <div class="about-img-main">
+            <!-- SVG illustration of a campus archway -->
+            <svg width="200" height="240" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nexus University campus illustration">
+              <!-- Building facade -->
+              <rect x="20" y="80" width="160" height="150" fill="#e8e7e1" stroke="#d0cfc8" stroke-width="1"/>
+              <!-- Columns -->
+              <rect x="35"  y="100" width="16" height="130" fill="#d0cfc8"/>
+              <rect x="68"  y="100" width="16" height="130" fill="#d0cfc8"/>
+              <rect x="116" y="100" width="16" height="130" fill="#d0cfc8"/>
+              <rect x="149" y="100" width="16" height="130" fill="#d0cfc8"/>
+              <!-- Pediment -->
+              <polygon points="10,80 100,30 190,80" fill="#dddcd6" stroke="#d0cfc8" stroke-width="1"/>
+              <!-- Door arch -->
+              <path d="M 80 230 L 80 170 Q 80 150 100 150 Q 120 150 120 170 L 120 230 Z" fill="#c8c7c0"/>
+              <!-- Steps -->
+              <rect x="10" y="228" width="180" height="6" fill="#d0cfc8"/>
+              <rect x="0"  y="234" width="200" height="6" fill="#c8c7c0"/>
+              <!-- Windows -->
+              <rect x="38"  y="115" width="20" height="26" rx="10" fill="#a8c4d8" opacity="0.6"/>
+              <rect x="71"  y="115" width="20" height="26" rx="10" fill="#a8c4d8" opacity="0.6"/>
+              <rect x="119" y="115" width="20" height="26" rx="10" fill="#a8c4d8" opacity="0.6"/>
+              <rect x="152" y="115" width="20" height="26" rx="10" fill="#a8c4d8" opacity="0.6"/>
+              <!-- Flag -->
+              <line x1="100" y1="30" x2="100" y2="10" stroke="#888" stroke-width="1.5"/>
+              <polygon points="100,10 115,17 100,24" fill="#c8a96e"/>
+            </svg>
+          </div>
+          <div class="about-img-float">
+            <span>62<br>years</span>
+          </div>
+        </div>
+
+        <div class="about-text" data-reveal>
+          <span class="overline">Our Story</span>
+          <div class="rule"></div>
+          <h2>A Legacy of Intellectual Courage</h2>
+          <p style="color:var(--text-muted); margin-bottom:1rem;">Founded in 1962 on the principle that knowledge should challenge, not merely inform, Nexus has grown from a single faculty into a world-class institution.</p>
+          <p style="color:var(--text-muted);">Our interdisciplinary approach dismantles barriers between fields — because the most important questions rarely respect departmental boundaries.</p>
+          <div class="about-pillars">
+            <div class="pillar">Research-led teaching at every level</div>
+            <div class="pillar">Partnerships with 200+ global institutions</div>
+            <div class="pillar">Student-centred, tutor-accessible culture</div>
+            <div class="pillar">Sustainability-first campus by 2030</div>
+          </div>
+          <a href="academics.html" class="btn btn-dark">Explore Academics</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMMES PREVIEW ===== -->
+  <section style="background: var(--off-white); padding: 6rem 0;">
+    <div class="container">
+      <div class="programmes-header">
+        <div>
+          <span class="overline">Faculties &amp; Schools</span>
+          <h2>Find Your<br><em>Field</em></h2>
+        </div>
+        <a href="academics.html" class="btn btn-dark">All Programmes</a>
+      </div>
+      <div class="prog-grid">
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">01</div>
+          <h4>Arts, Humanities &amp; Social Sciences</h4>
+          <p>Philosophy, History, Sociology, Languages, Politics and more across 18 disciplines.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">02</div>
+          <h4>Science &amp; Engineering</h4>
+          <p>Physics, Chemistry, Civil, Electrical and Computer Engineering in state-of-the-art labs.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">03</div>
+          <h4>Business &amp; Law</h4>
+          <p>MBA, LLB, Finance, Accounting and Entrepreneurship with strong industry links.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">04</div>
+          <h4>Medicine &amp; Health Sciences</h4>
+          <p>MBChB, Nursing, Pharmacy, and Public Health within the NHS-affiliated teaching hospital.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">05</div>
+          <h4>Computer Science &amp; AI</h4>
+          <p>Software Engineering, Data Science, Cybersecurity, and Artificial Intelligence.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+        <a href="academics.html" class="prog-card" data-reveal>
+          <div class="prog-num">06</div>
+          <h4>Education &amp; Psychology</h4>
+          <p>PGCE, Educational Research, Clinical and Developmental Psychology programmes.</p>
+          <span class="prog-arrow">Explore →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BAND ===== -->
+  <div class="cta-band">
+    <div class="container">
+      <div class="cta-inner">
+        <div>
+          <span class="overline" style="color:var(--accent);">Applications Open</span>
+          <h2>Begin Your<br><em>Next Chapter</em></h2>
+          <p style="color:rgba(250,250,248,0.6); margin-top:1rem; max-width:480px; font-weight:300;">Undergraduate, postgraduate and doctoral places available for the 2025–26 academic year. Join 24,000 students already shaping the future.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem; align-items:flex-start;">
+          <a href="contact.html" class="btn btn-light">Apply Now</a>
+          <a href="contact.html" class="btn btn-accent">Book an Open Day</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <div class="testimonial-section">
+    <div class="container">
+      <span class="overline" style="text-align:center; display:block;">Student Voices</span>
+      <div class="rule rule-center"></div>
+      <h2 style="text-align:center;">What Our Students Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card" data-reveal>
+          <div class="quote-mark">"</div>
+          <p>Nexus gave me the intellectual freedom to combine Computer Science with Philosophy. I couldn't have found that combination anywhere else.</p>
+          <div class="testimonial-author">
+            <strong>Aisha Mensah</strong>
+            BSc Computer Science &amp; Philosophy, 2023
+          </div>
+        </div>
+        <div class="testimonial-card" data-reveal>
+          <div class="quote-mark">"</div>
+          <p>The research opportunities here as an undergraduate were extraordinary. I co-authored a paper before my third year — that opened every door.</p>
+          <div class="testimonial-author">
+            <strong>James O'Brien</strong>
+            MSc Biomedical Sciences, 2024
+          </div>
+        </div>
+        <div class="testimonial-card" data-reveal>
+          <div class="quote-mark">"</div>
+          <p>Moving from Nairobi, I was nervous. But Nexus has one of the most welcoming, diverse communities I've ever encountered.</p>
+          <div class="testimonial-author">
+            <strong>Priya Ramachandran</strong>
+            LLB Law, 2023
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll-reveal CSS -->
+  <style>
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+    }
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

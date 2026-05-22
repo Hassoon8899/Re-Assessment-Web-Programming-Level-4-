@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus University — Contact &amp; Apply</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- Two-column layout ---- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    /* ---- Info column ---- */
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 1rem;
+    }
+    .info-item h5 {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .info-item p, .info-item a {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+    .info-item a { border-bottom: 1px solid var(--border); transition: border-color var(--transition), color var(--transition); }
+    .info-item a:hover { color: var(--accent); border-color: var(--accent); }
+    .office-hours {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+    .oh-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 300;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .oh-row:last-child { border-bottom: none; }
+    .oh-row span:last-child { color: var(--text-muted); }
+
+    /* ---- Form ---- */
+    .enquiry-form {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .form-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-main);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--black);
+    }
+    .form-group input.error,
+    .form-group select.error,
+    .form-group textarea.error {
+      border-color: #c0392b;
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7a72' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .field-error {
+      font-size: 0.75rem;
+      color: #c0392b;
+      margin-top: 0.35rem;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: var(--black);
+    }
+    .checkbox-group label {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1.5;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .btn-submit:hover { background: var(--accent-dark); }
+    .btn-submit:active { transform: scale(0.99); }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .form-success.visible { display: block; }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .success-icon svg { width: 24px; height: 24px; }
+    .form-success h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .form-success p { color: var(--text-muted); font-weight: 300; }
+
+    /* ---- Open days ---- */
+    .open-days-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .od-card {
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      transition: var(--transition);
+    }
+    .od-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .od-date {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .od-month {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .od-card h4 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .od-card p { font-size: 0.82rem; color: var(--text-muted); }
+
+    @media (max-width: 960px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .open-days-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <div class="page-hero" style="padding-top: calc(var(--nav-h) + 4rem);">
+    <div class="container">
+      <span class="overline">Get In Touch</span>
+      <div class="rule"></div>
+      <h1 class="anim-fade-up">Contact &amp;<br><em>Apply</em></h1>
+      <p class="anim-fade-up delay-1" style="max-width:500px; color:var(--text-muted); font-size:1.1rem; margin-top:1rem;">
+        Questions about programmes, entry requirements or student life? Our admissions team is here to help.
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Info column -->
+        <div>
+          <span class="overline">Our Office</span>
+          <div class="rule"></div>
+          <h2 style="margin-bottom:2rem;">We'd Love to<br><em>Hear From You</em></h2>
+          <div class="contact-info-block">
+            <div class="info-item">
+              <h5>Address</h5>
+              <p>Nexus University<br>Walton Street<br>Oxford, OX1 4NX<br>United Kingdom</p>
+            </div>
+            <div class="info-item">
+              <h5>Admissions</h5>
+              <a href="mailto:admissions@nexus.ac.uk">admissions@nexus.ac.uk</a><br>
+              <a href="tel:+441865270000">+44 (0)1865 270 000</a>
+            </div>
+            <div class="info-item">
+              <h5>General Enquiries</h5>
+              <a href="mailto:info@nexus.ac.uk">info@nexus.ac.uk</a>
+            </div>
+            <div class="info-item">
+              <h5>Office Hours</h5>
+              <div class="office-hours">
+                <div class="oh-row"><span>Monday – Friday</span><span>09:00 – 17:00</span></div>
+                <div class="oh-row"><span>Saturday</span><span>10:00 – 14:00</span></div>
+                <div class="oh-row"><span>Sunday</span><span>Closed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div>
+          <div class="enquiry-form" id="enquiryForm">
+            <div class="form-title">Send an Enquiry</div>
+            <p class="form-sub">Typically responded to within one working day.</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name" />
+                <div class="field-error" id="firstNameErr">Please enter your first name.</div>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name" />
+                <div class="field-error" id="lastNameErr">Please enter your last name.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="jane.smith@email.com" autocomplete="email" />
+              <div class="field-error" id="emailErr">Please enter a valid email address.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+44 7700 900000" autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label for="enquiryType">Enquiry Type *</label>
+              <select id="enquiryType" name="enquiryType">
+                <option value="">— Select an option —</option>
+                <option value="ug">Undergraduate Admissions</option>
+                <option value="pg">Postgraduate Admissions</option>
+                <option value="phd">Doctoral / PhD Programmes</option>
+                <option value="openday">Open Day Booking</option>
+                <option value="international">International Students</option>
+                <option value="fees">Fees &amp; Funding</option>
+                <option value="accommodation">Accommodation</option>
+                <option value="other">General Enquiry</option>
+              </select>
+              <div class="field-error" id="enquiryTypeErr">Please select an enquiry type.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Tell us how we can help…"></textarea>
+              <div class="field-error" id="messageErr">Please enter a message (at least 20 characters).</div>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="consent" name="consent" />
+              <label for="consent">I agree to Nexus University storing my data in order to respond to this enquiry. View our <a href="#" style="color:var(--accent); border-bottom:1px solid var(--accent);">Privacy Policy</a>.</label>
+            </div>
+            <div class="field-error" id="consentErr" style="margin-bottom:1rem;">You must agree to proceed.</div>
+
+            <button type="button" class="btn-submit" id="submitBtn">Send Enquiry</button>
+          </div>
+
+          <!-- Success state (hidden by default) -->
+          <div class="enquiry-form form-success" id="formSuccess">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3>Enquiry Received</h3>
+            <p>Thank you for getting in touch. A member of our admissions team will be in touch within one working day.</p>
+            <a href="index.html" class="btn btn-dark" style="margin-top:1.5rem;">Back to Home</a>
+          </div>
+        </div>
+
+      </div><!-- /.contact-grid -->
+    </div>
+  </section>
+
+  <!-- ===== OPEN DAYS ===== -->
+  <section style="background: var(--off-white);">
+    <div class="container">
+      <span class="overline">Visit Us</span>
+      <div class="rule"></div>
+      <h2>Upcoming <em>Open Days</em></h2>
+      <p style="color:var(--text-muted); max-width:480px; margin-top:0.5rem;">Experience Nexus in person. Meet faculty, tour the campus, and talk to current students.</p>
+      <div class="open-days-grid">
+        <div class="od-card" data-reveal>
+          <div class="od-date">15</div>
+          <div class="od-month">February 2025</div>
+          <h4>Undergraduate Open Day</h4>
+          <p>Campus tours, subject talks, accommodation viewings, and Q&amp;A with admissions staff. 09:30 – 16:00.</p>
+          <a href="#" class="btn btn-dark" style="font-size:0.72rem; margin-top:1.2rem;">Register</a>
+        </div>
+        <div class="od-card" data-reveal>
+          <div class="od-date">08</div>
+          <div class="od-month">March 2025</div>
+          <h4>Postgraduate Showcase</h4>
+          <p>Programme overviews, research centre tours, funding information sessions and networking. 10:00 – 15:30.</p>
+          <a href="#" class="btn btn-dark" style="font-size:0.72rem; margin-top:1.2rem;">Register</a>
+        </div>
+        <div class="od-card" data-reveal>
+          <div class="od-date">12</div>
+          <div class="od-month">April 2025</div>
+          <h4>International Student Day</h4>
+          <p>Visa guidance, scholarships, language support and a panel of international current students. 11:00 – 16:00.</p>
+          <a href="#" class="btn btn-dark" style="font-size:0.72rem; margin-top:1.2rem;">Register</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll-reveal -->
+  <style>
+    [data-reveal] { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease-smooth), transform .7s var(--ease-smooth); }
+    [data-reveal].revealed { opacity:1; transform:none; }
+  </style>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* ========================
+       FORM VALIDATION
+       ======================== */
+    const form = document.getElementById('enquiryForm');
+    const successBox = document.getElementById('formSuccess');
+
+    function getVal(id) {
+      return document.getElementById(id).value.trim();
+    }
+    function showErr(fieldId, errId, show) {
+      const field = document.getElementById(fieldId);
+      const err   = document.getElementById(errId);
+      if (!field || !err) return;
+      if (show) {
+        field.classList.add('error');
+        err.classList.add('visible');
+      } else {
+        field.classList.remove('error');
+        err.classList.remove('visible');
+      }
+    }
+
+    /* Clear errors on input */
+    ['firstName','lastName','email','enquiryType','message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          el.classList.remove('error');
+          const errEl = document.getElementById(id + 'Err');
+          if (errEl) errEl.classList.remove('visible');
+        });
+      }
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      let valid = true;
+
+      /* First name */
+      const fn = getVal('firstName');
+      showErr('firstName', 'firstNameErr', fn.length < 2);
+      if (fn.length < 2) valid = false;
+
+      /* Last name */
+      const ln = getVal('lastName');
+      showErr('lastName', 'lastNameErr', ln.length < 2);
+      if (ln.length < 2) valid = false;
+
+      /* Email */
+      const em = getVal('email');
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+      showErr('email', 'emailErr', !emailOk);
+      if (!emailOk) valid = false;
+
+      /* Enquiry type */
+      const et = getVal('enquiryType');
+      showErr('enquiryType', 'enquiryTypeErr', !et);
+      if (!et) valid = false;
+
+      /* Message */
+      const msg = getVal('message');
+      showErr('message', 'messageErr', msg.length < 20);
+      if (msg.length < 20) valid = false;
+
+      /* Consent */
+      const consent = document.getElementById('consent').checked;
+      const consentErr = document.getElementById('consentErr');
+      if (!consent) {
+        consentErr.classList.add('visible');
+        valid = false;
+      } else {
+        consentErr.classList.remove('visible');
+      }
+
+      /* If all valid, show success */
+      if (valid) {
+        form.style.display = 'none';
+        successBox.classList.add('visible');
+        successBox.style.display = 'block';
+        window.scrollTo({ top: successBox.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
