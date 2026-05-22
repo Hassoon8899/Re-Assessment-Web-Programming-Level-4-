@@ -1,0 +1,25 @@
+/* Removes default spacing */
+body {
+    margin: 0;
+
+    /* Full screen height */
+    height: 100vh;
+
+    /* Flexbox used for centering */
+    display: flex;
+
+    /* Horizontal centering */
+    justify-content: center;
+
+    /* Vertical centering */
+    align-items: center;
+
+    /* Background color */
+    background-color: #f0f0f0;
+}
+
+/* Optional styling for the video */
+video {
+    border: 5px solid #333;
+    border-radius: 10px;
+}
