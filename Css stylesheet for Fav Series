@@ -1,0 +1,66 @@
+/* Styles the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation bar styling */
+.navbar {
+    background-color: #222;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Navigation links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+}
+
+/* Hover effect for nav links */
+.navbar a:hover {
+    color: red;
+}
+
+/* Main header section */
+.main-header {
+    text-align: center;
+    padding: 40px;
+}
+
+/* Content section styling */
+.content-section {
+    padding: 25px;
+    margin: 20px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+}
+
+/* Button-styled link */
+.button-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Hover effect for button */
+.button-link:hover {
+    background-color: darkred;
+}
+
+/* Footer styling */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+}
