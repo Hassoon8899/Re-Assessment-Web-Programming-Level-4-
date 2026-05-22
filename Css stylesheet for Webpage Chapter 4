@@ -1,0 +1,97 @@
+/* General page styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+/* Header styling */
+header {
+    background-color: #17072b;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Main heading */
+header h1 {
+    font-family: Tahoma, sans-serif;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Navigation menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation list items */
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+/* Navigation links */
+nav ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Main content layout */
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Welcome section */
+.welcome-section {
+    width: 65%;
+}
+
+/* Sidebar section */
+.lineup-section {
+    width: 30%;
+    background-color: #172d67;
+    color: #FFFFFF;
+    padding: 20px;
+}
+
+/* Sidebar heading */
+.lineup-section h2 {
+    font-family: Tahoma, sans-serif;
+    font-weight: 700;
+}
+
+/* Sidebar list */
+.lineup-section ul {
+    padding-left: 20px;
+}
+
+/* Image container */
+.image-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Images */
+.image-container img,
+.main-image img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Footer styling */
+footer {
+    background-color: #8c15e9;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
